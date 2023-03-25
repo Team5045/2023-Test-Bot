@@ -5,6 +5,7 @@ from networktables import NetworkTables, NetworkTable
 from wpilib import DoubleSolenoid
 
 from components.drivetrain import DriveTrain
+from components.gyro import gyro
 import wpilib.drive
 from robotpy_ext.autonomous import AutonomousModeSelector
 from ctre import NeutralMode
@@ -96,6 +97,9 @@ class SpartaBot(MagicRobot):
             self.drivetrain.set_motors(0.0, 0.0)
             self.sd.putValue('Drivetrain: ', 'static')
 
+        if self.drive_controller.getXButton():
+            gyro.balancing(self)
+            
 
 if __name__ == '__main__':
     wpilib.run(SpartaBot)
