@@ -21,16 +21,16 @@ class gyro():
         ''' Just making things a bit easier to read here with variables'''
         print(angle)
 
-        motor_sets = angle/MAX_RANGE_LIM
+        motor_set = angle/MAX_RANGE_LIM
         # This should provide constant adjustment to the speeds so it won't jerk the robot
 
         if (ABSOLUTE_ANGLE > 0) and (ABSOLUTE_ANGLE < MAX_RANGE_LIM):
             if angle > 0.0:
-                self.drivetrain.set_motors(motor_sets, 0.0)
+                self.drivetrain.set_motors(motor_set, 0.0)
                 self.sd.putValue("Mode: ", "Moving Forward")
 
             elif angle < 0.0:
-                self.drivetrain.set_motors(motor_sets, 0.0)
+                self.drivetrain.set_motors(motor_set, 0.0)
                 self.sd.putValue("Mode: ", "Moving Backward")
 
             else:
