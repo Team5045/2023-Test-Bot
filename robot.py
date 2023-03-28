@@ -5,10 +5,11 @@ from networktables import NetworkTables, NetworkTable
 from wpilib import DoubleSolenoid
 
 from components.drivetrain import DriveTrain
-from components.gyro import gyro
+from controllers.gyro import gyro
 import wpilib.drive
 from robotpy_ext.autonomous import AutonomousModeSelector
 from ctre import NeutralMode
+import navx
 
 # Download and install stuff on the RoboRIO after imaging
 '''
@@ -49,6 +50,7 @@ class SpartaBot(MagicRobot):
     # a DriveTrain instance is automatically created by MagicRobot
 
     drivetrain: DriveTrain
+    gyro: gyro
 
     def createObjects(self):
         '''Create motors and stuff here'''
@@ -97,8 +99,7 @@ class SpartaBot(MagicRobot):
             self.drivetrain.set_motors(0.0, 0.0)
             self.sd.putValue('Drivetrain: ', 'static')
 
-        if self.drive_controller.getXButton():
-            gyro.balancing(self)
+        
             
 
 if __name__ == '__main__':
