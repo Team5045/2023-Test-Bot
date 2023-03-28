@@ -99,8 +99,9 @@ class SpartaBot(MagicRobot):
             self.drivetrain.set_motors(0.0, 0.0)
             self.sd.putValue('Drivetrain: ', 'static')
 
+        if self.drive_controller.getAButton():
+            self.gyro.balancing(self)       
         
-            
 
 if __name__ == '__main__':
     wpilib.run(SpartaBot)
